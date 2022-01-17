@@ -1,12 +1,21 @@
 class LS {
-    addBook(book){
-        let books;
-        if(localStorage.getItem('books') === null){
-            books = [];
+    // help functions  to get and set data at LS
+    getData(name){
+        let data;
+        if(localStorage.getItem(name) === null){
+            data = []
         } else {
-            books = JSON.parse(localStorage.getItem('books'));
+            data = JSON.parse(localStorage.getItem(name))
         }
+        return data
+    }
+
+    setData(name, data){
+        localStorage.setItem(name, JSON.stringify(data))
+    }
+    addBook(book){
+        let books = this.getData('books')
         books.push(book);
-        localStorage.setItem('books', JSON.stringify(books));
+        this.setData('books', books)
     }
 }
