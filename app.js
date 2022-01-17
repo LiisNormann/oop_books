@@ -1,5 +1,6 @@
-// UI object
+// UI and LS object
 const ui = new UI()
+const ls = new LS()
 
 // event elements
 const form = document.querySelector('form');
@@ -21,6 +22,8 @@ function addBook(event){
     const book = new Book(title, author, isbn)
     // add book value to visual by UI object
     ui.addBook(book)
+    //add book to LS
+    ls.addBook(book)
 
     titleInput.value = '';
     authorInput.value = '';
