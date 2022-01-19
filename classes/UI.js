@@ -17,6 +17,7 @@ class UI {
         }
         return element
     }
+    
     addBook(book){
         // create <tr> element
         const tr = this.addUIElement('tr')
@@ -39,5 +40,20 @@ class UI {
         // add tr to tbody
         const booksList = document.querySelector('#books-list')
         booksList.appendChild(tr)
+    }
+
+    //if X is clicked, the book is removed from the list
+    delBook(event) {
+        //if X is clicked
+        if(event.target.textContent === 'X') {
+            //ask for confirmation
+            if(confirm('Do you want to delete this book?')){
+                event.target.parentElement.parentElement.remove();
+                let bookISBN = event.target.parentElement.previousElementSibling.textContent;
+                console.log(bookISBN);
+                const ls = new LS();
+                ls.delBook(bookISBN);
+            }
+        }
     }
 }

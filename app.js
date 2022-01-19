@@ -1,12 +1,14 @@
-// UI and LS object
-const ui = new UI()
-const ls = new LS()
+//UI and LS object
+const ui = new UI();
+const ls = new LS();
 
 // event elements
 const form = document.querySelector('form');
+const booksList = document.querySelector('#books-list');
 
 // events
 form.addEventListener('submit', addBook);
+booksList.addEventListener('click', delBook);
 document.addEventListener('DOMContentLoaded', getBooks);
 
 function getBooks() {
@@ -27,15 +29,23 @@ function addBook(event){
     let author = authorInput.value;
     let isbn = isbnInput.value;
 
-    // create book (from Book.js)
-    const book = new Book(title, author, isbn)
-    // add book value to visual by UI object
-    ui.addBook(book)
-    //add book to LS
+    // create book
+    const book = new Book(title, author, isbn);
+    console.log(book)
+    ui.addBook(book);
+    console.log(ui)
+    //addBook to LS
     ls.addBook(book)
 
+    //addBookToLocalStorage(book);
     titleInput.value = '';
     authorInput.value = '';
     isbnInput.value = '';
     event.preventDefault();
-} 
+}
+
+function delBook (event) {
+    console.log(event);
+    /*ls.delBook(event);*/
+    ui.delBook(event);
+}
